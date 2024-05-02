@@ -38,6 +38,7 @@ SUBDIRS :=  \
 ../FreeRTOS/Src/ \
 ../HAL/ \
 ../HAL/LCD/ \
+../HAL/LED/ \
 ../HAL/NTC_Temperature/ \
 ../MCAL/ \
 ../MCAL/ADC/ \
@@ -58,6 +59,7 @@ C_SRCS +=  \
 ../FreeRTOS/Src/queue.c \
 ../FreeRTOS/Src/tasks.c \
 ../HAL/LCD/LCD_program.c \
+../HAL/LED/LED_program.c \
 ../HAL/NTC_Temperature/NTC_program.c \
 ../main.c \
 ../MCAL/ADC/ADC_config.c \
@@ -85,6 +87,7 @@ FreeRTOS/Src/port.o \
 FreeRTOS/Src/queue.o \
 FreeRTOS/Src/tasks.o \
 HAL/LCD/LCD_program.o \
+HAL/LED/LED_program.o \
 HAL/NTC_Temperature/NTC_program.o \
 main.o \
 MCAL/ADC/ADC_config.o \
@@ -105,6 +108,7 @@ FreeRTOS/Src/port.o \
 FreeRTOS/Src/queue.o \
 FreeRTOS/Src/tasks.o \
 HAL/LCD/LCD_program.o \
+HAL/LED/LED_program.o \
 HAL/NTC_Temperature/NTC_program.o \
 main.o \
 MCAL/ADC/ADC_config.o \
@@ -125,6 +129,7 @@ FreeRTOS/Src/port.d \
 FreeRTOS/Src/queue.d \
 FreeRTOS/Src/tasks.d \
 HAL/LCD/LCD_program.d \
+HAL/LED/LED_program.d \
 HAL/NTC_Temperature/NTC_program.d \
 main.d \
 MCAL/ADC/ADC_config.d \
@@ -145,6 +150,7 @@ FreeRTOS/Src/port.d \
 FreeRTOS/Src/queue.d \
 FreeRTOS/Src/tasks.d \
 HAL/LCD/LCD_program.d \
+HAL/LED/LED_program.d \
 HAL/NTC_Temperature/NTC_program.d \
 main.d \
 MCAL/ADC/ADC_config.d \
@@ -232,6 +238,13 @@ FreeRTOS/Src/tasks.o: ../FreeRTOS/Src/tasks.c
 	
 
 HAL/LCD/LCD_program.o: ../HAL/LCD/LCD_program.c
+	@echo Building file: $<
+	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../FreeRTOS/Inc"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+HAL/LED/LED_program.o: ../HAL/LED/LED_program.c
 	@echo Building file: $<
 	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../FreeRTOS/Inc"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

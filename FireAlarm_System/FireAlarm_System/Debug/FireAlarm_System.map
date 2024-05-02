@@ -273,6 +273,13 @@ Discarded input sections
                 0x00000000        0x8 HAL/LCD/LCD_program.o
  .data.HeartCustomCharacter
                 0x00000000        0x8 HAL/LCD/LCD_program.o
+ .text          0x00000000        0x0 HAL/LED/LED_program.o
+ .data          0x00000000        0x0 HAL/LED/LED_program.o
+ .bss           0x00000000        0x0 HAL/LED/LED_program.o
+ .text.LED_OnOffNegativeLogic
+                0x00000000       0x18 HAL/LED/LED_program.o
+ .text.LED_Toggle
+                0x00000000        0x6 HAL/LED/LED_program.o
  .text          0x00000000        0x0 HAL/NTC_Temperature/NTC_program.o
  .data          0x00000000        0x0 HAL/NTC_Temperature/NTC_program.o
  .bss           0x00000000        0x0 HAL/NTC_Temperature/NTC_program.o
@@ -294,12 +301,18 @@ Discarded input sections
                 0x00000000       0x8c MCAL/GPIO/GPIO_program.o
  .text.GPIO_TogglePin
                 0x00000000       0x70 MCAL/GPIO/GPIO_program.o
+ .text.GPIO_SetPortDirection
+                0x00000000       0x96 MCAL/GPIO/GPIO_program.o
+ .text.GPIO_init
+                0x00000000       0x5a MCAL/GPIO/GPIO_program.o
  .text.GPIO_ReadPort
                 0x00000000       0x2c MCAL/GPIO/GPIO_program.o
  .text.GPIO_WritePort
                 0x00000000       0x24 MCAL/GPIO/GPIO_program.o
  .text.GPIO_TogglePort
                 0x00000000       0x34 MCAL/GPIO/GPIO_program.o
+ .data.GPIO_configParam
+                0x00000000        0x3 MCAL/GPIO/GPIO_program.o
  .text          0x00000000        0x0 MCAL/USART/USART_config.o
  .data          0x00000000        0x0 MCAL/USART/USART_config.o
  .bss           0x00000000        0x0 MCAL/USART/USART_config.o
@@ -553,6 +566,7 @@ LOAD FreeRTOS/Src/port.o
 LOAD FreeRTOS/Src/queue.o
 LOAD FreeRTOS/Src/tasks.o
 LOAD HAL/LCD/LCD_program.o
+LOAD HAL/LED/LED_program.o
 LOAD HAL/NTC_Temperature/NTC_program.o
 LOAD main.o
 LOAD MCAL/ADC/ADC_config.o
@@ -672,7 +686,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000     0x2ca2
+.text           0x00000000     0x2be6
  *(.vectors)
  .vectors       0x00000000       0x54 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega32/avr5/crtatmega32.o
                 0x00000000                __vector_default
@@ -925,150 +939,150 @@ END GROUP
  .text.LCD_intToString
                 0x00001af8       0x3e HAL/LCD/LCD_program.o
                 0x00001af8                LCD_intToString
+ .text.LED_Init
+                0x00001b36        0x8 HAL/LED/LED_program.o
+                0x00001b36                LED_Init
+ .text.LED_OnOffPositiveLogic
+                0x00001b3e       0x14 HAL/LED/LED_program.o
+                0x00001b3e                LED_OnOffPositiveLogic
  .text.NTC_GetTemperature
-                0x00001b36       0xd4 HAL/NTC_Temperature/NTC_program.o
-                0x00001b36                NTC_GetTemperature
+                0x00001b52       0xd4 HAL/NTC_Temperature/NTC_program.o
+                0x00001b52                NTC_GetTemperature
  .text.T_T3_Catch_Update_Temp
-                0x00001c0a       0x9c main.o
-                0x00001c0a                T_T3_Catch_Update_Temp
+                0x00001c26       0x9c main.o
+                0x00001c26                T_T3_Catch_Update_Temp
  .text.T_T4_UART_listen
-                0x00001ca6       0xd0 main.o
-                0x00001ca6                T_T4_UART_listen
+                0x00001cc2       0xd0 main.o
+                0x00001cc2                T_T4_UART_listen
  .text.T_T5_Update_LCD
-                0x00001d76      0x1f8 main.o
-                0x00001d76                T_T5_Update_LCD
+                0x00001d92      0x1f8 main.o
+                0x00001d92                T_T5_Update_LCD
  .text.System_Init
-                0x00001f6e       0x12 main.o
-                0x00001f6e                System_Init
+                0x00001f8a       0x16 main.o
+                0x00001f8a                System_Init
  .text.LCD_MAINInit
-                0x00001f80       0x7c main.o
-                0x00001f80                LCD_MAINInit
- .text.main     0x00001ffc       0xe0 main.o
-                0x00001ffc                main
+                0x00001fa0       0x7c main.o
+                0x00001fa0                LCD_MAINInit
+ .text.main     0x0000201c       0xe0 main.o
+                0x0000201c                main
  .text.F_fireStateScreen
-                0x000020dc       0x12 main.o
-                0x000020dc                F_fireStateScreen
+                0x000020fc       0x12 main.o
+                0x000020fc                F_fireStateScreen
  .text.T_T6_SwitchBetHaz_Nor
-                0x000020ee       0x76 main.o
-                0x000020ee                T_T6_SwitchBetHaz_Nor
+                0x0000210e       0x8a main.o
+                0x0000210e                T_T6_SwitchBetHaz_Nor
  .text.ADC_OnlyStartConversionGeneral
-                0x00002164       0x12 MCAL/ADC/ADC_program.o
-                0x00002164                ADC_OnlyStartConversionGeneral
+                0x00002198       0x12 MCAL/ADC/ADC_program.o
+                0x00002198                ADC_OnlyStartConversionGeneral
  .text.ADC_Init
-                0x00002176       0x86 MCAL/ADC/ADC_program.o
-                0x00002176                ADC_Init
+                0x000021aa       0x86 MCAL/ADC/ADC_program.o
+                0x000021aa                ADC_Init
  .text.ADC_ReadConversionRegister
-                0x000021fc       0x3c MCAL/ADC/ADC_program.o
-                0x000021fc                ADC_ReadConversionRegister
+                0x00002230       0x3c MCAL/ADC/ADC_program.o
+                0x00002230                ADC_ReadConversionRegister
  .text.ADC_ReadChannelSingleConvertion
-                0x00002238       0x14 MCAL/ADC/ADC_program.o
-                0x00002238                ADC_ReadChannelSingleConvertion
+                0x0000226c       0x14 MCAL/ADC/ADC_program.o
+                0x0000226c                ADC_ReadChannelSingleConvertion
  .text.GPIO_SetPinDirection
-                0x0000224c      0x1ac MCAL/GPIO/GPIO_program.o
-                0x0000224c                GPIO_SetPinDirection
+                0x00002280      0x1ac MCAL/GPIO/GPIO_program.o
+                0x00002280                GPIO_SetPinDirection
  .text.GPIO_WritePin
-                0x000023f8       0xf6 MCAL/GPIO/GPIO_program.o
-                0x000023f8                GPIO_WritePin
- .text.GPIO_SetPortDirection
-                0x000024ee       0x96 MCAL/GPIO/GPIO_program.o
-                0x000024ee                GPIO_SetPortDirection
- .text.GPIO_init
-                0x00002584       0x5a MCAL/GPIO/GPIO_program.o
-                0x00002584                GPIO_init
+                0x0000242c       0xf6 MCAL/GPIO/GPIO_program.o
+                0x0000242c                GPIO_WritePin
  .text.__vector_13
-                0x000025de       0x52 MCAL/USART/USART_program.o
-                0x000025de                __vector_13
+                0x00002522       0x52 MCAL/USART/USART_program.o
+                0x00002522                __vector_13
  .text.USART_Init
-                0x00002630       0x82 MCAL/USART/USART_program.o
-                0x00002630                USART_Init
+                0x00002574       0x82 MCAL/USART/USART_program.o
+                0x00002574                USART_Init
  .text.USART_SendBytePolling
-                0x000026b2       0x1a MCAL/USART/USART_program.o
-                0x000026b2                USART_SendBytePolling
+                0x000025f6       0x1a MCAL/USART/USART_program.o
+                0x000025f6                USART_SendBytePolling
  .text.USART_SendStringPolling
-                0x000026cc       0x28 MCAL/USART/USART_program.o
-                0x000026cc                USART_SendStringPolling
+                0x00002610       0x28 MCAL/USART/USART_program.o
+                0x00002610                USART_SendStringPolling
  .text.UART_receiveByteUnblocking
-                0x000026f4       0x12 MCAL/USART/USART_program.o
-                0x000026f4                UART_receiveByteUnblocking
+                0x00002638       0x12 MCAL/USART/USART_program.o
+                0x00002638                UART_receiveByteUnblocking
  .text.avr-libc.fplib
-                0x00002706        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(addsf3.o)
-                0x00002706                __subsf3
-                0x00002708                __addsf3
+                0x0000264a        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(addsf3.o)
+                0x0000264a                __subsf3
+                0x0000264c                __addsf3
  .text.avr-libc.fplib
-                0x00002714       0xcc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(addsf3x.o)
-                0x00002736                __addsf3x
+                0x00002658       0xcc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(addsf3x.o)
+                0x0000267a                __addsf3x
  .text.avr-libc.fplib
-                0x000027e0        0x8 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(divsf3.o)
-                0x000027e0                __divsf3
+                0x00002724        0x8 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(divsf3.o)
+                0x00002724                __divsf3
  .text.avr-libc.fplib
-                0x000027e8       0xdc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(divsf3x.o)
-                0x00002808                __divsf3x
-                0x0000280e                __divsf3_pse
+                0x0000272c       0xdc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(divsf3x.o)
+                0x0000274c                __divsf3x
+                0x00002752                __divsf3_pse
  .text.avr-libc.fplib
-                0x000028c4       0x5e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fixunssfsi.o)
-                0x000028c4                __fixunssfsi
+                0x00002808       0x5e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fixunssfsi.o)
+                0x00002808                __fixunssfsi
  .text.avr-libc.fplib
-                0x00002922       0x7a c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(floatsisf.o)
-                0x00002922                __floatunsisf
-                0x00002926                __floatsisf
+                0x00002866       0x7a c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(floatsisf.o)
+                0x00002866                __floatunsisf
+                0x0000286a                __floatsisf
  .text.avr-libc.fplib
-                0x0000299c        0xc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_inf.o)
-                0x0000299c                __fp_inf
+                0x000028e0        0xc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_inf.o)
+                0x000028e0                __fp_inf
  .text.avr-libc.fplib
-                0x000029a8        0x6 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_nan.o)
-                0x000029a8                __fp_nan
+                0x000028ec        0x6 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_nan.o)
+                0x000028ec                __fp_nan
  .text.avr-libc.fplib
-                0x000029ae        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_pscA.o)
-                0x000029ae                __fp_pscA
+                0x000028f2        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_pscA.o)
+                0x000028f2                __fp_pscA
  .text.avr-libc.fplib
-                0x000029bc        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_pscB.o)
-                0x000029bc                __fp_pscB
+                0x00002900        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_pscB.o)
+                0x00002900                __fp_pscB
  .text.avr-libc.fplib
-                0x000029ca       0x22 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_round.o)
-                0x000029ca                __fp_round
+                0x0000290e       0x22 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_round.o)
+                0x0000290e                __fp_round
  .text.avr-libc.fplib
-                0x000029ec       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_split3.o)
-                0x000029ec                __fp_split3
-                0x000029fc                __fp_splitA
+                0x00002930       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_split3.o)
+                0x00002930                __fp_split3
+                0x00002940                __fp_splitA
  .text.avr-libc.fplib
-                0x00002a30        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_zero.o)
-                0x00002a30                __fp_zero
-                0x00002a32                __fp_szero
+                0x00002974        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_zero.o)
+                0x00002974                __fp_zero
+                0x00002976                __fp_szero
  .text.avr-libc.fplib
-                0x00002a3e       0xa0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(log.o)
-                0x00002a4e                log
+                0x00002982       0xa0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(log.o)
+                0x00002992                log
  .text.avr-libc.fplib
-                0x00002ade        0x8 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(mulsf3.o)
-                0x00002ade                __mulsf3
+                0x00002a22        0x8 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(mulsf3.o)
+                0x00002a22                __mulsf3
  .text.avr-libc.fplib
-                0x00002ae6       0xd2 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(mulsf3x.o)
-                0x00002b04                __mulsf3x
-                0x00002b0a                __mulsf3_pse
+                0x00002a2a       0xd2 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(mulsf3x.o)
+                0x00002a48                __mulsf3x
+                0x00002a4e                __mulsf3_pse
  .text.avr-libc.fplib
-                0x00002bb8       0x1c c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_mpack.o)
-                0x00002bb8                __fp_mpack
-                0x00002bbc                __fp_mpack_finite
+                0x00002afc       0x1c c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_mpack.o)
+                0x00002afc                __fp_mpack
+                0x00002b00                __fp_mpack_finite
  .text.avr-libc.fplib
-                0x00002bd4       0x4e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_powser.o)
-                0x00002bd4                __fp_powser
+                0x00002b18       0x4e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_powser.o)
+                0x00002b18                __fp_powser
  .text.avr-libc
-                0x00002c22       0x12 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(memcpy.o)
-                0x00002c22                memcpy
+                0x00002b66       0x12 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(memcpy.o)
+                0x00002b66                memcpy
  .text.avr-libc
-                0x00002c34       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(itoa_ncheck.o)
-                0x00002c34                __itoa_ncheck
+                0x00002b78       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(itoa_ncheck.o)
+                0x00002b78                __itoa_ncheck
  .text.avr-libc
-                0x00002c4a       0x34 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(utoa_ncheck.o)
-                0x00002c4a                __utoa_ncheck
-                0x00002c4c                __utoa_common
+                0x00002b8e       0x34 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(utoa_ncheck.o)
+                0x00002b8e                __utoa_ncheck
+                0x00002b90                __utoa_common
  .text.avr-libc
-                0x00002c7e       0x20 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strrev.o)
-                0x00002c7e                strrev
-                0x00002c9e                . = ALIGN (0x2)
+                0x00002bc2       0x20 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strrev.o)
+                0x00002bc2                strrev
+                0x00002be2                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00002c9e        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
-                0x00002c9e                _exit
-                0x00002c9e                exit
+ .fini9         0x00002be2        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+                0x00002be2                _exit
+                0x00002be2                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -1087,11 +1101,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00002c9e        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+ .fini0         0x00002be2        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x00002ca2                _etext = .
+                0x00002be6                _etext = .
 
-.data           0x00800060       0xe6 load address 0x00002ca2
+.data           0x00800060       0xe2 load address 0x00002be6
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -1106,101 +1120,97 @@ END GROUP
  .data.ADC_ConfigTypeParam
                 0x00800064        0x5 MCAL/ADC/ADC_config.o
                 0x00800064                ADC_ConfigTypeParam
- .data.GPIO_configParam
-                0x00800069        0x3 MCAL/GPIO/GPIO_program.o
-                0x00800069                GPIO_configParam
  .data.USART_ConfigTypeParam
-                0x0080006c        0x6 MCAL/USART/USART_config.o
-                0x0080006c                USART_ConfigTypeParam
+                0x00800069        0x6 MCAL/USART/USART_config.o
+                0x00800069                USART_ConfigTypeParam
  *(.gnu.linkonce.d*)
  *(.rodata)
  *(.rodata*)
  .rodata.str1.1
-                0x00800072        0x5 FreeRTOS/Src/tasks.o
+                0x0080006f        0x5 FreeRTOS/Src/tasks.o
  .rodata.str1.1
-                0x00800077       0xce main.o
+                0x00800074       0xce main.o
                                  0xd2 (size before relaxing)
  *(.gnu.linkonce.r*)
-                0x00800146                . = ALIGN (0x2)
- *fill*         0x00800145        0x1 
-                0x00800146                _edata = .
-                0x00800146                PROVIDE (__data_end, .)
+                0x00800142                . = ALIGN (0x2)
+                0x00800142                _edata = .
+                0x00800142                PROVIDE (__data_end, .)
 
-.bss            0x00800146      0x4fc
-                0x00800146                PROVIDE (__bss_start, .)
+.bss            0x00800142      0x4fc
+                0x00800142                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
  .bss.pucAlignedHeap.1980
-                0x00800146        0x2 FreeRTOS/Src/heap_1.o
+                0x00800142        0x2 FreeRTOS/Src/heap_1.o
  .bss.xNextFreeByte
-                0x00800148        0x2 FreeRTOS/Src/heap_1.o
- .bss.ucHeap    0x0080014a      0x47e FreeRTOS/Src/heap_1.o
+                0x00800144        0x2 FreeRTOS/Src/heap_1.o
+ .bss.ucHeap    0x00800146      0x47e FreeRTOS/Src/heap_1.o
  .bss.uxSchedulerSuspended
-                0x008005c8        0x1 FreeRTOS/Src/tasks.o
+                0x008005c4        0x1 FreeRTOS/Src/tasks.o
  .bss.uxTaskNumber
-                0x008005c9        0x1 FreeRTOS/Src/tasks.o
+                0x008005c5        0x1 FreeRTOS/Src/tasks.o
  .bss.xNumOfOverflows
-                0x008005ca        0x1 FreeRTOS/Src/tasks.o
+                0x008005c6        0x1 FreeRTOS/Src/tasks.o
  .bss.xYieldPending
-                0x008005cb        0x1 FreeRTOS/Src/tasks.o
+                0x008005c7        0x1 FreeRTOS/Src/tasks.o
  .bss.uxPendedTicks
-                0x008005cc        0x1 FreeRTOS/Src/tasks.o
+                0x008005c8        0x1 FreeRTOS/Src/tasks.o
  .bss.xSchedulerRunning
-                0x008005cd        0x1 FreeRTOS/Src/tasks.o
+                0x008005c9        0x1 FreeRTOS/Src/tasks.o
  .bss.uxTopReadyPriority
-                0x008005ce        0x1 FreeRTOS/Src/tasks.o
+                0x008005ca        0x1 FreeRTOS/Src/tasks.o
  .bss.xTickCount
-                0x008005cf        0x2 FreeRTOS/Src/tasks.o
+                0x008005cb        0x2 FreeRTOS/Src/tasks.o
  .bss.uxCurrentNumberOfTasks
-                0x008005d1        0x1 FreeRTOS/Src/tasks.o
+                0x008005cd        0x1 FreeRTOS/Src/tasks.o
  .bss.uxTasksDeleted
-                0x008005d2        0x1 FreeRTOS/Src/tasks.o
+                0x008005ce        0x1 FreeRTOS/Src/tasks.o
  .bss.xTasksWaitingTermination
-                0x008005d3        0x9 FreeRTOS/Src/tasks.o
+                0x008005cf        0x9 FreeRTOS/Src/tasks.o
  .bss.xPendingReadyList
-                0x008005dc        0x9 FreeRTOS/Src/tasks.o
+                0x008005d8        0x9 FreeRTOS/Src/tasks.o
  .bss.pxOverflowDelayedTaskList
-                0x008005e5        0x2 FreeRTOS/Src/tasks.o
+                0x008005e1        0x2 FreeRTOS/Src/tasks.o
  .bss.pxDelayedTaskList
-                0x008005e7        0x2 FreeRTOS/Src/tasks.o
+                0x008005e3        0x2 FreeRTOS/Src/tasks.o
  .bss.xDelayedTaskList2
-                0x008005e9        0x9 FreeRTOS/Src/tasks.o
+                0x008005e5        0x9 FreeRTOS/Src/tasks.o
  .bss.xDelayedTaskList1
-                0x008005f2        0x9 FreeRTOS/Src/tasks.o
+                0x008005ee        0x9 FreeRTOS/Src/tasks.o
  .bss.pxReadyTasksLists
-                0x008005fb       0x36 FreeRTOS/Src/tasks.o
+                0x008005f7       0x36 FreeRTOS/Src/tasks.o
  .bss.pxCurrentTCB
-                0x00800631        0x2 FreeRTOS/Src/tasks.o
-                0x00800631                pxCurrentTCB
+                0x0080062d        0x2 FreeRTOS/Src/tasks.o
+                0x0080062d                pxCurrentTCB
  .bss.col_global
-                0x00800633        0x1 HAL/LCD/LCD_program.o
+                0x0080062f        0x1 HAL/LCD/LCD_program.o
  .bss.row_global
-                0x00800634        0x1 HAL/LCD/LCD_program.o
- .bss.ebValues  0x00800635        0x2 main.o
-                0x00800635                ebValues
- .bss.egEvents  0x00800637        0x2 main.o
-                0x00800637                egEvents
+                0x00800630        0x1 HAL/LCD/LCD_program.o
+ .bss.ebValues  0x00800631        0x2 main.o
+                0x00800631                ebValues
+ .bss.egEvents  0x00800633        0x2 main.o
+                0x00800633                egEvents
  .bss.MessMailuart_fireState
-                0x00800639        0x2 main.o
-                0x00800639                MessMailuart_fireState
+                0x00800635        0x2 main.o
+                0x00800635                MessMailuart_fireState
  .bss.MessQUart_Thres_temp
-                0x0080063b        0x2 main.o
-                0x0080063b                MessQUart_Thres_temp
+                0x00800637        0x2 main.o
+                0x00800637                MessQUart_Thres_temp
  .bss.g_CallBackPtr_Receive_USART
-                0x0080063d        0x2 MCAL/USART/USART_program.o
+                0x00800639        0x2 MCAL/USART/USART_program.o
  *(COMMON)
- COMMON         0x0080063f        0x3 main.o
-                0x0080063f                xMutexLCD
-                0x00800641                Current_Temp
-                0x00800642                PROVIDE (__bss_end, .)
-                0x00002ca2                __data_load_start = LOADADDR (.data)
-                0x00002d88                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x0080063b        0x3 main.o
+                0x0080063b                xMutexLCD
+                0x0080063d                Current_Temp
+                0x0080063e                PROVIDE (__bss_end, .)
+                0x00002be6                __data_load_start = LOADADDR (.data)
+                0x00002cc8                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x00800642        0x0
+.noinit         0x0080063e        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x00800642                _end = .
+                0x0080063e                _end = .
                 [!provide]                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
@@ -1250,6 +1260,7 @@ END GROUP
  .comment       0x00000030       0x31 FreeRTOS/Src/queue.o
  .comment       0x00000030       0x31 FreeRTOS/Src/tasks.o
  .comment       0x00000030       0x31 HAL/LCD/LCD_program.o
+ .comment       0x00000030       0x31 HAL/LED/LED_program.o
  .comment       0x00000030       0x31 HAL/NTC_Temperature/NTC_program.o
  .comment       0x00000030       0x31 main.o
  .comment       0x00000030       0x31 MCAL/ADC/ADC_config.o
@@ -1278,7 +1289,7 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000      0x580
+.debug_aranges  0x00000000      0x5b8
  *(.debug_aranges)
  .debug_aranges
                 0x00000000       0x68 FreeRTOS/Src/event_groups.o
@@ -1295,24 +1306,26 @@ END GROUP
  .debug_aranges
                 0x00000338       0x90 HAL/LCD/LCD_program.o
  .debug_aranges
-                0x000003c8       0x20 HAL/NTC_Temperature/NTC_program.o
+                0x000003c8       0x38 HAL/LED/LED_program.o
  .debug_aranges
-                0x000003e8       0x58 main.o
+                0x00000400       0x20 HAL/NTC_Temperature/NTC_program.o
  .debug_aranges
-                0x00000440       0x18 MCAL/ADC/ADC_config.o
+                0x00000420       0x58 main.o
  .debug_aranges
-                0x00000458       0x40 MCAL/ADC/ADC_program.o
+                0x00000478       0x18 MCAL/ADC/ADC_config.o
  .debug_aranges
-                0x00000498       0x60 MCAL/GPIO/GPIO_program.o
+                0x00000490       0x40 MCAL/ADC/ADC_program.o
  .debug_aranges
-                0x000004f8       0x18 MCAL/USART/USART_config.o
+                0x000004d0       0x60 MCAL/GPIO/GPIO_program.o
  .debug_aranges
-                0x00000510       0x70 MCAL/USART/USART_program.o
+                0x00000530       0x18 MCAL/USART/USART_config.o
+ .debug_aranges
+                0x00000548       0x70 MCAL/USART/USART_program.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x6655
+.debug_info     0x00000000     0x6936
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x4e6 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega32/avr5/crtatmega32.o
  .debug_info    0x000004e6      0x8c3 FreeRTOS/Src/event_groups.o
@@ -1322,15 +1335,16 @@ END GROUP
  .debug_info    0x00001461     0x12e5 FreeRTOS/Src/queue.o
  .debug_info    0x00002746     0x1528 FreeRTOS/Src/tasks.o
  .debug_info    0x00003c6e      0xe53 HAL/LCD/LCD_program.o
- .debug_info    0x00004ac1      0x120 HAL/NTC_Temperature/NTC_program.o
- .debug_info    0x00004be1      0xcdd main.o
- .debug_info    0x000058be      0x193 MCAL/ADC/ADC_config.o
- .debug_info    0x00005a51      0x2f3 MCAL/ADC/ADC_program.o
- .debug_info    0x00005d44      0x362 MCAL/GPIO/GPIO_program.o
- .debug_info    0x000060a6      0x1ea MCAL/USART/USART_config.o
- .debug_info    0x00006290      0x3c5 MCAL/USART/USART_program.o
+ .debug_info    0x00004ac1      0x278 HAL/LED/LED_program.o
+ .debug_info    0x00004d39      0x120 HAL/NTC_Temperature/NTC_program.o
+ .debug_info    0x00004e59      0xd46 main.o
+ .debug_info    0x00005b9f      0x193 MCAL/ADC/ADC_config.o
+ .debug_info    0x00005d32      0x2f3 MCAL/ADC/ADC_program.o
+ .debug_info    0x00006025      0x362 MCAL/GPIO/GPIO_program.o
+ .debug_info    0x00006387      0x1ea MCAL/USART/USART_config.o
+ .debug_info    0x00006571      0x3c5 MCAL/USART/USART_program.o
 
-.debug_abbrev   0x00000000     0x1859
+.debug_abbrev   0x00000000     0x1930
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x4a3 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega32/avr5/crtatmega32.o
  .debug_abbrev  0x000004a3      0x1d5 FreeRTOS/Src/event_groups.o
@@ -1340,15 +1354,16 @@ END GROUP
  .debug_abbrev  0x000009cf      0x221 FreeRTOS/Src/queue.o
  .debug_abbrev  0x00000bf0      0x28b FreeRTOS/Src/tasks.o
  .debug_abbrev  0x00000e7b      0x2b2 HAL/LCD/LCD_program.o
- .debug_abbrev  0x0000112d       0xb0 HAL/NTC_Temperature/NTC_program.o
- .debug_abbrev  0x000011dd      0x19d main.o
- .debug_abbrev  0x0000137a       0x6d MCAL/ADC/ADC_config.o
- .debug_abbrev  0x000013e7      0x10e MCAL/ADC/ADC_program.o
- .debug_abbrev  0x000014f5      0x197 MCAL/GPIO/GPIO_program.o
- .debug_abbrev  0x0000168c       0x6d MCAL/USART/USART_config.o
- .debug_abbrev  0x000016f9      0x160 MCAL/USART/USART_program.o
+ .debug_abbrev  0x0000112d       0xbf HAL/LED/LED_program.o
+ .debug_abbrev  0x000011ec       0xb0 HAL/NTC_Temperature/NTC_program.o
+ .debug_abbrev  0x0000129c      0x1b5 main.o
+ .debug_abbrev  0x00001451       0x6d MCAL/ADC/ADC_config.o
+ .debug_abbrev  0x000014be      0x10e MCAL/ADC/ADC_program.o
+ .debug_abbrev  0x000015cc      0x197 MCAL/GPIO/GPIO_program.o
+ .debug_abbrev  0x00001763       0x6d MCAL/USART/USART_config.o
+ .debug_abbrev  0x000017d0      0x160 MCAL/USART/USART_program.o
 
-.debug_line     0x00000000     0x389e
+.debug_line     0x00000000     0x39bc
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x116 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega32/avr5/crtatmega32.o
  .debug_line    0x00000116      0x417 FreeRTOS/Src/event_groups.o
@@ -1358,15 +1373,16 @@ END GROUP
  .debug_line    0x00000b85      0xa6c FreeRTOS/Src/queue.o
  .debug_line    0x000015f1      0xca7 FreeRTOS/Src/tasks.o
  .debug_line    0x00002298      0x63e HAL/LCD/LCD_program.o
- .debug_line    0x000028d6      0x149 HAL/NTC_Temperature/NTC_program.o
- .debug_line    0x00002a1f      0x511 main.o
- .debug_line    0x00002f30       0x46 MCAL/ADC/ADC_config.o
- .debug_line    0x00002f76      0x187 MCAL/ADC/ADC_program.o
- .debug_line    0x000030fd      0x4d1 MCAL/GPIO/GPIO_program.o
- .debug_line    0x000035ce       0x77 MCAL/USART/USART_config.o
- .debug_line    0x00003645      0x259 MCAL/USART/USART_program.o
+ .debug_line    0x000028d6      0x11c HAL/LED/LED_program.o
+ .debug_line    0x000029f2      0x149 HAL/NTC_Temperature/NTC_program.o
+ .debug_line    0x00002b3b      0x513 main.o
+ .debug_line    0x0000304e       0x46 MCAL/ADC/ADC_config.o
+ .debug_line    0x00003094      0x187 MCAL/ADC/ADC_program.o
+ .debug_line    0x0000321b      0x4d1 MCAL/GPIO/GPIO_program.o
+ .debug_line    0x000036ec       0x77 MCAL/USART/USART_config.o
+ .debug_line    0x00003763      0x259 MCAL/USART/USART_program.o
 
-.debug_frame    0x00000000      0xe94
+.debug_frame    0x00000000      0xee8
  *(.debug_frame)
  .debug_frame   0x00000000      0x15c FreeRTOS/Src/event_groups.o
  .debug_frame   0x0000015c       0x60 FreeRTOS/Src/heap_1.o
@@ -1375,13 +1391,14 @@ END GROUP
  .debug_frame   0x000002c8      0x2e4 FreeRTOS/Src/queue.o
  .debug_frame   0x000005ac      0x41c FreeRTOS/Src/tasks.o
  .debug_frame   0x000009c8      0x160 HAL/LCD/LCD_program.o
- .debug_frame   0x00000b28       0x4c HAL/NTC_Temperature/NTC_program.o
- .debug_frame   0x00000b74       0xd8 main.o
- .debug_frame   0x00000c4c       0x64 MCAL/ADC/ADC_program.o
- .debug_frame   0x00000cb0       0xac MCAL/GPIO/GPIO_program.o
- .debug_frame   0x00000d5c      0x138 MCAL/USART/USART_program.o
+ .debug_frame   0x00000b28       0x54 HAL/LED/LED_program.o
+ .debug_frame   0x00000b7c       0x4c HAL/NTC_Temperature/NTC_program.o
+ .debug_frame   0x00000bc8       0xd8 main.o
+ .debug_frame   0x00000ca0       0x64 MCAL/ADC/ADC_program.o
+ .debug_frame   0x00000d04       0xac MCAL/GPIO/GPIO_program.o
+ .debug_frame   0x00000db0      0x138 MCAL/USART/USART_program.o
 
-.debug_str      0x00000000     0x2155
+.debug_str      0x00000000     0x21db
  *(.debug_str)
  .debug_str     0x00000000      0x196 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega32/avr5/crtatmega32.o
  .debug_str     0x00000196      0x540 FreeRTOS/Src/event_groups.o
@@ -1398,22 +1415,24 @@ END GROUP
                                 0xa72 (size before relaxing)
  .debug_str     0x0000135e      0x2d2 HAL/LCD/LCD_program.o
                                 0x472 (size before relaxing)
- .debug_str     0x00001630       0x73 HAL/NTC_Temperature/NTC_program.o
+ .debug_str     0x00001630       0x9b HAL/LED/LED_program.o
+                                0x27e (size before relaxing)
+ .debug_str     0x000016cb       0x73 HAL/NTC_Temperature/NTC_program.o
                                 0x20d (size before relaxing)
- .debug_str     0x000016a3      0x1d1 main.o
-                                0x531 (size before relaxing)
- .debug_str     0x00001874      0x2d1 MCAL/ADC/ADC_config.o
+ .debug_str     0x0000173e      0x1c7 main.o
+                                0x556 (size before relaxing)
+ .debug_str     0x00001905      0x2d1 MCAL/ADC/ADC_config.o
                                 0x3ef (size before relaxing)
- .debug_str     0x00001b45       0x98 MCAL/ADC/ADC_program.o
+ .debug_str     0x00001bd6       0x98 MCAL/ADC/ADC_program.o
                                 0x51a (size before relaxing)
- .debug_str     0x00001bdd      0x140 MCAL/GPIO/GPIO_program.o
+ .debug_str     0x00001c6e      0x135 MCAL/GPIO/GPIO_program.o
                                 0x34a (size before relaxing)
- .debug_str     0x00001d1d      0x301 MCAL/USART/USART_config.o
+ .debug_str     0x00001da3      0x301 MCAL/USART/USART_config.o
                                 0x49c (size before relaxing)
- .debug_str     0x0000201e      0x137 MCAL/USART/USART_program.o
+ .debug_str     0x000020a4      0x137 MCAL/USART/USART_program.o
                                 0x4b4 (size before relaxing)
 
-.debug_loc      0x00000000     0x539f
+.debug_loc      0x00000000     0x557f
  *(.debug_loc)
  .debug_loc     0x00000000      0xb21 FreeRTOS/Src/event_groups.o
  .debug_loc     0x00000b21       0xf1 FreeRTOS/Src/heap_1.o
@@ -1422,11 +1441,12 @@ END GROUP
  .debug_loc     0x00000ff7     0x1813 FreeRTOS/Src/queue.o
  .debug_loc     0x0000280a     0x14ba FreeRTOS/Src/tasks.o
  .debug_loc     0x00003cc4      0x987 HAL/LCD/LCD_program.o
- .debug_loc     0x0000464b      0x115 HAL/NTC_Temperature/NTC_program.o
- .debug_loc     0x00004760      0x241 main.o
- .debug_loc     0x000049a1      0x110 MCAL/ADC/ADC_program.o
- .debug_loc     0x00004ab1      0x608 MCAL/GPIO/GPIO_program.o
- .debug_loc     0x000050b9      0x2e6 MCAL/USART/USART_program.o
+ .debug_loc     0x0000464b      0x1e0 HAL/LED/LED_program.o
+ .debug_loc     0x0000482b      0x115 HAL/NTC_Temperature/NTC_program.o
+ .debug_loc     0x00004940      0x241 main.o
+ .debug_loc     0x00004b81      0x110 MCAL/ADC/ADC_program.o
+ .debug_loc     0x00004c91      0x608 MCAL/GPIO/GPIO_program.o
+ .debug_loc     0x00005299      0x2e6 MCAL/USART/USART_program.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -1446,7 +1466,7 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000      0x4e0
+.debug_ranges   0x00000000      0x508
  *(.debug_ranges)
  .debug_ranges  0x00000000       0x70 FreeRTOS/Src/event_groups.o
  .debug_ranges  0x00000070       0x28 FreeRTOS/Src/heap_1.o
@@ -1455,11 +1475,12 @@ END GROUP
  .debug_ranges  0x00000108       0xc8 FreeRTOS/Src/queue.o
  .debug_ranges  0x000001d0      0x158 FreeRTOS/Src/tasks.o
  .debug_ranges  0x00000328       0x80 HAL/LCD/LCD_program.o
- .debug_ranges  0x000003a8       0x10 HAL/NTC_Temperature/NTC_program.o
- .debug_ranges  0x000003b8       0x48 main.o
- .debug_ranges  0x00000400       0x30 MCAL/ADC/ADC_program.o
- .debug_ranges  0x00000430       0x50 MCAL/GPIO/GPIO_program.o
- .debug_ranges  0x00000480       0x60 MCAL/USART/USART_program.o
+ .debug_ranges  0x000003a8       0x28 HAL/LED/LED_program.o
+ .debug_ranges  0x000003d0       0x10 HAL/NTC_Temperature/NTC_program.o
+ .debug_ranges  0x000003e0       0x48 main.o
+ .debug_ranges  0x00000428       0x30 MCAL/ADC/ADC_program.o
+ .debug_ranges  0x00000458       0x50 MCAL/GPIO/GPIO_program.o
+ .debug_ranges  0x000004a8       0x60 MCAL/USART/USART_program.o
 
 .debug_macro
  *(.debug_macro)

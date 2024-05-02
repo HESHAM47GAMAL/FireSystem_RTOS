@@ -1,0 +1,79 @@
+<mxfile host="app.diagrams.net" modified="2024-05-02T15:00:59.696Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36" etag="sqz95rhedfXswTKqkYCP" version="24.2.5" type="device">
+  <diagram name="Page-1" id="BHEXmSM6Z0xOLkGhilqz">
+    <mxGraphModel dx="3000" dy="2128" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="zpG57oIaACjQZrRCzRtX-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;curved=1;strokeWidth=3;" parent="1" source="zpG57oIaACjQZrRCzRtX-1" target="zpG57oIaACjQZrRCzRtX-2" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-160" y="188" as="sourcePoint" />
+            <mxPoint x="752" y="208" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-160" y="43" />
+              <mxPoint x="1085" y="43" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zpG57oIaACjQZrRCzRtX-1" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;Normal State&amp;nbsp;&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;strokeWidth=3;" parent="1" vertex="1">
+          <mxGeometry x="-319" y="176" width="180" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="zpG57oIaACjQZrRCzRtX-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0;exitDx=0;exitDy=0;curved=1;strokeWidth=3;strokeColor=#007FFF;entryX=0;entryY=0;entryDx=0;entryDy=0;" parent="1" source="zpG57oIaACjQZrRCzRtX-2" target="zpG57oIaACjQZrRCzRtX-1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1149" y="-186" />
+              <mxPoint x="377" y="-186" />
+              <mxPoint x="377" y="-182" />
+              <mxPoint x="-293" y="-182" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zpG57oIaACjQZrRCzRtX-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=1;exitDx=0;exitDy=0;curved=1;strokeWidth=3;" parent="1" source="zpG57oIaACjQZrRCzRtX-2" target="zpG57oIaACjQZrRCzRtX-3" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1149" y="749" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zpG57oIaACjQZrRCzRtX-2" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;Hazard State&amp;nbsp;&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;strokeWidth=3;" parent="1" vertex="1">
+          <mxGeometry x="995" y="183" width="180" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="zpG57oIaACjQZrRCzRtX-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.983;exitY=0.32;exitDx=0;exitDy=0;entryX=0;entryY=1;entryDx=0;entryDy=0;strokeWidth=3;curved=1;strokeColor=#2281d3;exitPerimeter=0;" parent="1" source="zpG57oIaACjQZrRCzRtX-3" target="zpG57oIaACjQZrRCzRtX-2" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zpG57oIaACjQZrRCzRtX-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=1;entryDx=0;entryDy=0;curved=1;strokeWidth=3;" parent="1" source="zpG57oIaACjQZrRCzRtX-3" target="zpG57oIaACjQZrRCzRtX-1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-215.99990844726562" y="360.66675821940134" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zpG57oIaACjQZrRCzRtX-3" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;Danger State&amp;nbsp;&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;strokeWidth=3;" parent="1" vertex="1">
+          <mxGeometry x="280" y="578" width="180" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="zpG57oIaACjQZrRCzRtX-6" value="&lt;font size=&quot;1&quot; style=&quot;&quot;&gt;&lt;b style=&quot;font-size: 25px;&quot;&gt;Current Temperature &amp;gt;= Threshold Temperature &amp;amp;&amp;amp; Fire System Disabled&lt;/b&gt;&lt;/font&gt;&lt;div&gt;&lt;font size=&quot;1&quot; style=&quot;&quot;&gt;&lt;b style=&quot;font-size: 25px;&quot;&gt;OR&lt;/b&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font size=&quot;1&quot;&gt;&lt;b style=&quot;font-size: 25px;&quot;&gt;Current Temperature &amp;lt; Threshold Temperature &amp;amp;&amp;amp; Fire System Enabled&lt;/b&gt;&lt;/font&gt;&lt;font size=&quot;1&quot; style=&quot;&quot;&gt;&lt;b style=&quot;font-size: 25px;&quot;&gt;&lt;br&gt;&lt;/b&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font size=&quot;1&quot;&gt;&lt;b style=&quot;font-size: 25px;&quot;&gt;&lt;br&gt;&lt;/b&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font size=&quot;1&quot; style=&quot;&quot;&gt;&lt;b style=&quot;font-size: 25px;&quot;&gt;&lt;br&gt;&lt;/b&gt;&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="19" y="-68" width="888" height="162" as="geometry" />
+        </mxCell>
+        <mxCell id="zpG57oIaACjQZrRCzRtX-8" value="&lt;font color=&quot;#319fff&quot; size=&quot;1&quot; style=&quot;&quot;&gt;&lt;b style=&quot;font-size: 25px;&quot;&gt;Current Temperature &amp;lt; Threshold Temperature &amp;amp;&amp;amp; Fire System Enabled&lt;/b&gt;&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="47" y="-262" width="867" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="zpG57oIaACjQZrRCzRtX-10" value="&lt;font color=&quot;#4b99e2&quot; size=&quot;1&quot;&gt;&lt;b style=&quot;font-size: 25px;&quot;&gt;Current Temperature &amp;gt;= Threshold Temperature &amp;amp;&amp;amp; Fire System Disabled&lt;/b&gt;&lt;/font&gt;&lt;div&gt;&lt;font color=&quot;#4b99e2&quot; size=&quot;1&quot;&gt;&lt;b style=&quot;font-size: 25px;&quot;&gt;OR&lt;/b&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font color=&quot;#4b99e2&quot;&gt;&lt;font size=&quot;1&quot;&gt;&lt;b style=&quot;font-size: 25px;&quot;&gt;Current Temperature &amp;lt; Threshold Temperature &amp;amp;&amp;amp; Fire System Enabled&lt;/b&gt;&lt;/font&gt;&lt;font size=&quot;1&quot;&gt;&lt;b style=&quot;font-size: 25px;&quot;&gt;&lt;br&gt;&lt;/b&gt;&lt;/font&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font size=&quot;1&quot;&gt;&lt;b style=&quot;font-size: 25px;&quot;&gt;&lt;br&gt;&lt;/b&gt;&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="522" y="421" width="888" height="132" as="geometry" />
+        </mxCell>
+        <mxCell id="zpG57oIaACjQZrRCzRtX-12" value="&lt;font size=&quot;1&quot; style=&quot;&quot;&gt;&lt;b style=&quot;font-size: 25px;&quot;&gt;Current Temperature &amp;gt;= Threshold Temperature &amp;amp;&amp;amp; Fire System Enabled&lt;/b&gt;&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="522" y="747" width="881" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="zpG57oIaACjQZrRCzRtX-16" value="&lt;div&gt;&lt;b style=&quot;font-size: 25px;&quot;&gt;Current Temperature &amp;lt; Threshold Temperature &amp;amp;&amp;amp; Fire System Enabled&lt;/b&gt;&lt;font size=&quot;1&quot; style=&quot;&quot;&gt;&lt;b style=&quot;font-size: 25px;&quot;&gt;&lt;br&gt;&lt;/b&gt;&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="-616" y="722" width="867" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="zpG57oIaACjQZrRCzRtX-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=1;exitDx=0;exitDy=0;entryX=0.014;entryY=0.312;entryDx=0;entryDy=0;entryPerimeter=0;strokeWidth=3;curved=1;strokeColor=#3a7dbc;" parent="1" source="zpG57oIaACjQZrRCzRtX-1" target="zpG57oIaACjQZrRCzRtX-3" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-165" y="634" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zpG57oIaACjQZrRCzRtX-18" value="&lt;font color=&quot;#5992c9&quot; size=&quot;1&quot; style=&quot;&quot;&gt;&lt;b style=&quot;font-size: 25px;&quot;&gt;Current Temperature &amp;gt;= Threshold Temperature &amp;amp;&amp;amp; Fire System Enabled&lt;/b&gt;&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;rotation=0;" parent="1" vertex="1">
+          <mxGeometry x="-488" y="483" width="881" height="42" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -10,7 +10,7 @@
 
 #include "HAL/LCD/LCD_interface.h"
 #include "HAL/NTC_Temperature/NTC_interface.h"
-
+#include "HAL/LED/LED_interface.h"
 
 #define ExceedTemperature    (1 << 0)
 #define SystemFireState		 (1 << 1)
@@ -121,7 +121,7 @@ void T_T3_Catch_Update_Temp(void * pvparam)
 			USART_SendStringPolling((uint8 *)"ADC Failed update lcd\r");
 		}
 
-		vTaskDelay(500);/*	As I want to take new Temperature Value every half second	*/
+		vTaskDelay(200);/*	As I want to take new Temperature Value every half second	*/
 	}
 }
 
@@ -292,24 +292,24 @@ void T_T6_SwitchBetHaz_Nor(void *pvparam)
 			if( xSemaphoreTake( xMutexLCD, ( TickType_t ) 1000 ) == pdTRUE )
 			{
 				Mutex_Taken_Already = TRUE ;
+				LED_OnOffPositiveLogic(PORTC_ID,PIN0_ID,LED_ON);
 				F_fireStateScreen();
 			}
-			// GPIO_TogglePin(PORTC_ID,PIN0_ID);
-			// vTaskDelay(300);
+			
 		}
 		else
 		{
 			if(Mutex_Taken_Already == TRUE)
 			{
 				Mutex_Taken_Already = FALSE ;
+				LED_OnOffPositiveLogic(PORTC_ID,PIN0_ID,LED_OFF);
 				xSemaphoreGive( xMutexLCD );
 				/*	Should be here to avoid continous update LCD without go from Fire state to normal state*/
 				LCD_MAINInit();	
 			}
-			// GPIO_TogglePin(PORTC_ID,PIN1_ID);
-			// vTaskDelay(300);
+		
 		}
-		vTaskDelay(500);
+		vTaskDelay(100);
 	}
 	
 }
@@ -320,7 +320,7 @@ void System_Init(void)
 	LCD_init();
 	USART_Init();
     ADC_Init();
-    GPIO_init();
+    LED_Init(PORTC_ID,PIN0_ID);
 
 }
 

@@ -7,6 +7,8 @@ main.d main.o: .././main.c .././MCAL/USART/USART_interface.h \
  .././HAL/LCD/../../SERVICE/STD_TYPES.h \
  .././HAL/NTC_Temperature/NTC_interface.h \
  .././HAL/NTC_Temperature/../../SERVICE/STD_TYPES.h \
+ .././HAL/LED/LED_interface.h .././HAL/LED/../../SERVICE/STD_TYPES.h \
+ .././HAL/LED/LED_config.h .././HAL/LED/../../MCAL/GPIO/GPIO_interface.h \
  ../FreeRTOS/Inc/FreeRTOS.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stddef.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stdint.h \
@@ -51,6 +53,14 @@ main.d main.o: .././main.c .././MCAL/USART/USART_interface.h \
 .././HAL/NTC_Temperature/NTC_interface.h:
 
 .././HAL/NTC_Temperature/../../SERVICE/STD_TYPES.h:
+
+.././HAL/LED/LED_interface.h:
+
+.././HAL/LED/../../SERVICE/STD_TYPES.h:
+
+.././HAL/LED/LED_config.h:
+
+.././HAL/LED/../../MCAL/GPIO/GPIO_interface.h:
 
 ../FreeRTOS/Inc/FreeRTOS.h:
 

@@ -22,6 +22,8 @@ FreeRTOS\Src\tasks.c
 
 HAL\LCD\LCD_program.c
 
+HAL\LED\LED_program.c
+
 HAL\NTC_Temperature\NTC_program.c
 
 main.c
