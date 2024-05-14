@@ -332,9 +332,13 @@ void LCD_MAINInit(void)
 	Current_Temp = NTC_GetTemperature();
 	LCD_MoveCursor(0,10);
 	LCD_intToString(Current_Temp);
+
+
 	LCD_DisplayStringRowCol((uint8 *)"Threshold Temp:    C",1,0);	
 	LCD_MoveCursor(1,16);
 	LCD_intToString(thresold_Temp);
+
+	
 	LCD_DisplayStringRowCol((uint8 *)"Alarm State: ",2,0);	
 	LCD_MoveCursor(2,13);
 	if(AlarmState == TRUE)
