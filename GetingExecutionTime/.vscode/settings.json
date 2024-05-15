@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "ntc_interface.h": "c",
+        "timer0_private.h": "c"
+    }
+}
