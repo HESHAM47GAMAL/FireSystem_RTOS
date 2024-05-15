@@ -2,8 +2,10 @@
  * FireAlarm_System.cpp
  *
  * Created: 4/25/2024 6:22:08 PM
- * Author : moham
+ * Author : Hesham Shehata
  */ 
+
+/**************************                   INCLUDES                   **************************/
 
 #include "MCAL/USART/USART_interface.h"
 #include "MCAL/ADC/ADC_interface.h"
@@ -12,56 +14,94 @@
 #include "HAL/NTC_Temperature/NTC_interface.h"
 #include "HAL/LED/LED_interface.h"
 
-#define ExceedTemperature    (1 << 0)
-#define SystemFireState		 (1 << 1)
 
 #include "FreeRTOS.h"
 #include "task.h"
 #include "queue.h"
 #include "semphr.h"
 #include "event_groups.h"
-// responsible for Initialize GPIO , ADC , UART , LCD and NTC temperature
+
+/**************************                   Macros                   **************************/
+
+
+#define ExceedTemperature    (1 << 0)
+#define SystemFireState		 (1 << 1)
+
+/**************************                   Functions Declaration                  **************************/
+
+/*
+*   @brief : this function used to initailize LCD , UART , ADC , LED with wanted configuration
+*   @args  : void
+*   @return: no return
+*   @synchronous / Asynchronous : Synchronous
+*   @ Reentrant / Non Reentrant : Reentrant
+*/
 void System_Init(void);
 
+/*
+*   @brief : this function used to clear screen then display current temperature and threshold Tempreture and current state for fire system
+*   @args  : void
+*   @return: no return
+*   @synchronous / Asynchronous : Synchronous
+*   @ Reentrant / Non Reentrant : Reentrant
+*/
 void LCD_MAINInit(void);
 
-// 
-// void T_T1(void* pvParam);
-// void T_T2(void* pvParam);
+/*
+*   @brief : this function used to clear screen then dispay existing of alarm 
+*   @args  : void
+*   @return: no return
+*   @synchronous / Asynchronous : Synchronous
+*   @ Reentrant / Non Reentrant : Reentrant
+*/
+void F_fireStateScreen(void);
+
+
+
+/**************************                   Tasks Prototype                   **************************/
+
 void T_T3_Catch_Update_Temp(void * pvparam);
 void T_T4_UART_listen(void * pvparam);
 void T_T5_Update_LCD(void *pvparam);
 void T_T6_SwitchBetHaz_Nor(void *pvparam);
 
-void F_fireStateScreen(void);
 
 
+/**************************                   Global Variales                   **************************/
 
+/*	Carry Current Temperture readed from sensor	*/
 unsigned char Current_Temp  ;
+/*	Carry threshold Tempreture that if cuurent temperature exceed will give alarm indicating existing fire  if fire system enabled */
 unsigned char thresold_Temp = 80;
+/*	Carry current state for fire system  */
 boolean AlarmState = TRUE; 
 
-
+/*	Mutex to avoid corruption on LCD as it's shared resource	*/
 SemaphoreHandle_t xMutexLCD;
 // SemaphoreHandle_t XFiresystemState_Semph ;
 
+/*	Queue to carry value of temperature and synchronize */
 QueueHandle_t	MessQUart_Thres_temp = NULL;
+/*	Queue to carry indication of fire system state and synchronize */
 QueueHandle_t 	MessMailuart_fireState = NULL;
-
+/*	Used to synchronize and take action based on multiple event and responsible for fire alarm	*/
 EventGroupHandle_t 	egEvents = NULL;
+/*	*/
 EventBits_t			ebValues = 0;
 
 int main(void)
 {
-
+	/*	Initialize all MCAl and HAL perephirals	*/
 	System_Init();
+	/*	display current temperature and threshold temperature and fire system state		*/
 	LCD_MAINInit();
-	
+	/*	create mutex responsible for LCD */
 	xMutexLCD = xSemaphoreCreateMutex();
-	// XFiresystemState_Semph = xSemaphoreCreateBinary();
+	/*	create queue responsible for carry threshould temperature	*/
 	MessQUart_Thres_temp = xQueueCreate(3,3 * sizeof(uint8) );	
+	/*	create queue responsible for carry fire system state	*/
 	MessMailuart_fireState = xQueueCreate(3, sizeof(uint8));
-
+	/*	create event group responsible for fire alarm of fire sysetm */
 	egEvents = xEventGroupCreate();
 
 
@@ -338,7 +378,7 @@ void LCD_MAINInit(void)
 	LCD_MoveCursor(1,16);
 	LCD_intToString(thresold_Temp);
 
-	
+
 	LCD_DisplayStringRowCol((uint8 *)"Alarm State: ",2,0);	
 	LCD_MoveCursor(2,13);
 	if(AlarmState == TRUE)
