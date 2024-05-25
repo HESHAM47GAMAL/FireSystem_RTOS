@@ -31,6 +31,8 @@
 <p>I use Simso tool to simulate tasks and see if there any task may miss deadline and see CPU load </p>
 <img src= "https://github.com/HESHAM47GAMAL/FireSystem_RTOS/blob/main/Tasks_Scheduling.png">
 
+<p>There are folder called GetingExecutionTime this is work space to for each task to get worst execution time for each task to be used in Simso</p>
+
 ## Tools
 <p>1.Eclipse </p>
 <p>2.Docklight </p>
