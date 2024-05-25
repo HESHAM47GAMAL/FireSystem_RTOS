@@ -60,9 +60,24 @@ void F_fireStateScreen(void);
 
 /**************************                   Tasks Prototype                   **************************/
 
+/*
+*   @brief : this task Responsible for read current temperature from NTC sensor
+*/
 void T_T3_Catch_Update_Temp(void * pvparam);
+
+/*
+*   @brief : this task Responsible for catch message from UART 
+*/
 void T_T4_UART_listen(void * pvparam);
+
+/*
+*   @brief : this task Responsible for update value of temperature Threshold and state of fire system
+*/
 void T_T5_Update_LCD(void *pvparam);
+
+/*
+*   @brief : this task Responsible for switch between indication of hazard state (display message in lcd Alaem)and normal(display current temperature and threshold and system state )
+*/
 void T_T6_SwitchBetHaz_Nor(void *pvparam);
 
 
@@ -86,7 +101,7 @@ QueueHandle_t	MessQUart_Thres_temp = NULL;
 QueueHandle_t 	MessMailuart_fireState = NULL;
 /*	Used to synchronize and take action based on multiple event and responsible for fire alarm	*/
 EventGroupHandle_t 	egEvents = NULL;
-/*	*/
+/*	carry value of Eventgroup check	*/
 EventBits_t			ebValues = 0;
 
 int main(void)
@@ -107,8 +122,8 @@ int main(void)
 
 
 	xTaskCreate(T_T6_SwitchBetHaz_Nor, "Emergency_normal", 200, NULL, 4, NULL);
-	xTaskCreate(T_T3_Catch_Update_Temp, "Update Current Temp", 100, &Current_Temp, 3, NULL);
-	xTaskCreate(T_T5_Update_LCD, "update Threshold_state", 100, NULL, 2, NULL);
+	xTaskCreate(T_T3_Catch_Update_Temp, "Update Current Temp", 100, &Current_Temp, 2, NULL);
+	xTaskCreate(T_T5_Update_LCD, "update Threshold_state", 100, NULL, 3, NULL);
 	xTaskCreate(T_T4_UART_listen, "Recieve UART Mess", 100, NULL, 1, NULL);
 
 	xEventGroupSetBits(egEvents,SystemFireState); // As I by defualt make system Fire Enable
@@ -119,7 +134,10 @@ int main(void)
 }
 
 
-//155 ms
+
+/*	worst case execution time = 155ms	
+* Period : 500 ms
+*/
 void T_T3_Catch_Update_Temp(void * pvparam)
 {
 	
@@ -142,7 +160,7 @@ void T_T3_Catch_Update_Temp(void * pvparam)
 		}
 
 		/*	take mutex to access LCD shared resource*/
-		if( xSemaphoreTake( xMutexLCD, ( TickType_t ) 100 ) == pdTRUE )
+		if( xSemaphoreTake( xMutexLCD, ( TickType_t ) 10 ) == pdTRUE )
 		{
 			/*	Dispalay value of current Temperature in LCD */
 			LCD_MoveCursor(0,10);
@@ -151,7 +169,7 @@ void T_T3_Catch_Update_Temp(void * pvparam)
 			{
 				LCD_DisplayString((uint8 *)" ");
 			}
-			// USART_SendStringPolling((uint8 *)"ADC update lcd\r");
+			USART_SendStringPolling((uint8 *)"ADC update lcd\r");
 			xSemaphoreGive( xMutexLCD );
 		}
 		/*	Failed to take mutex*/
@@ -161,11 +179,13 @@ void T_T3_Catch_Update_Temp(void * pvparam)
 			USART_SendStringPolling((uint8 *)"ADC Failed update lcd\r");
 		}
 
-		vTaskDelay(200);/*	As I want to take new Temperature Value every half second	*/
+		vTaskDelay(500);/*	As I want to take new Temperature Value every half second	*/
 	}
 }
 
-
+/*	worst case execution time = 8ms	
+* Period : 270 ms
+*/
 void T_T4_UART_listen(void * pvparam)
 {
 	
@@ -191,7 +211,7 @@ void T_T4_UART_listen(void * pvparam)
 			else if( (update_thresould_temp == TRUE) && (u8Data == 'K')) /*	Accept new threshold temperature value*/
 			{
 				txMsg_UART[u8Ind] = 0;
-				xQueueSend(MessQUart_Thres_temp, txMsg_UART, portMAX_DELAY);
+				xQueueSend(MessQUart_Thres_temp, txMsg_UART,( TickType_t ) 10);
 				update_thresould_temp = FALSE ;
 				u8Ind = 0;	
 			}
@@ -202,17 +222,25 @@ void T_T4_UART_listen(void * pvparam)
 			}
 			else if(u8Data == 'T') /*	Will toggle state of Alarm system*/
 			{
-				xQueueSend(MessMailuart_fireState, &u8Data, portMAX_DELAY);
+				xQueueSend(MessMailuart_fireState, &u8Data, ( TickType_t )10);
 			}
 			else if(u8Data == 'D') /*	Will Disbale Alarm system*/
 			{
-				xQueueSend(MessMailuart_fireState, &u8Data, portMAX_DELAY);
+				xQueueSend(MessMailuart_fireState, &u8Data,( TickType_t ) 10);
+			}
+			else /*	used to clear buffer of threshold temperature if entered any wrong character	*/
+			{
+				update_thresould_temp = FALSE ;
+				u8Ind = 0;
 			}
 		}
+		
 	}
 }
 
-
+/*	worst case execution time = 100ms	
+* Period : 300 ms
+*/
 void T_T5_Update_LCD(void *pvparam)
 {
 	uint8 rxMsg_thresholdTemp[4] = {};
@@ -220,7 +248,7 @@ void T_T5_Update_LCD(void *pvparam)
 	while(1)
 	{
 		/*	handle received thresould temperature value and display it */
-		if(xQueueReceive(MessQUart_Thres_temp, rxMsg_thresholdTemp, 100))
+		if(xQueueReceive(MessQUart_Thres_temp, rxMsg_thresholdTemp, ( TickType_t ) 150))
 		{
 			thresold_Temp = rxMsg_thresholdTemp[0] - '0';
 			thresold_Temp *= 10 ;
@@ -241,15 +269,15 @@ void T_T5_Update_LCD(void *pvparam)
 				xEventGroupClearBits(egEvents,ExceedTemperature);
 			}
 
-			if( xSemaphoreTake( xMutexLCD, ( TickType_t ) 100 ) == pdTRUE )
+			if( xSemaphoreTake( xMutexLCD, ( TickType_t ) 10 ) == pdTRUE )
 			{
 				LCD_DisplayStringRowCol(rxMsg_thresholdTemp,1,16);
-				USART_SendStringPolling((uint8 *)"Thre update lcd\r");
+				USART_SendStringPolling((uint8 *)"Threshold update lcd\r");
 				xSemaphoreGive( xMutexLCD );
 			}
 			else
 			{
-				USART_SendStringPolling((uint8 *)"thre Failed update lcd\r");
+				USART_SendStringPolling((uint8 *)"Threshold Failed update lcd\r");
 			}
 		}
 		else
@@ -258,21 +286,22 @@ void T_T5_Update_LCD(void *pvparam)
 		}
 
 		/*	handle state of firing system if it enabled or disabled and update lcd with this change	*/
-		if(xQueueReceive(MessMailuart_fireState, &rxmsg_fireState, 100))
+		if(xQueueReceive(MessMailuart_fireState, &rxmsg_fireState, ( TickType_t ) 150))
 		{
 			/*	Disable state of fire system */
 			if(rxmsg_fireState == 'D')
 			{
 				AlarmState = FALSE ;
 				xEventGroupClearBits(egEvents,SystemFireState);
-				if( xSemaphoreTake( xMutexLCD, ( TickType_t ) 400 ) == pdTRUE )
+				if( xSemaphoreTake( xMutexLCD, ( TickType_t ) 10 ) == pdTRUE )
 				{
 					LCD_DisplayStringRowCol((uint8 *)"D",2,13);	
+					USART_SendStringPolling((uint8 *)"Disable Fire System\r");
 					xSemaphoreGive( xMutexLCD );
 				}
 				else 
 				{
-
+					USART_SendStringPolling((uint8 *)"Failed to Disable Fire System\r");
 				}
 			}
 			/*	Toggle state of fire system */
@@ -283,39 +312,44 @@ void T_T5_Update_LCD(void *pvparam)
 				{
 					AlarmState = FALSE ;
 					xEventGroupClearBits(egEvents,SystemFireState);
-					if( xSemaphoreTake( xMutexLCD, ( TickType_t ) 400 ) == pdTRUE )
+					if( xSemaphoreTake( xMutexLCD, ( TickType_t ) 10 ) == pdTRUE )
 					{
 						LCD_DisplayStringRowCol((uint8 *)"D",2,13);	
+						USART_SendStringPolling((uint8 *)"Disable Fire System\r");
 						xSemaphoreGive( xMutexLCD );
 					}
 					else 
 					{
-
+						USART_SendStringPolling((uint8 *)"Failed to toggle Fire System state\r");
 					}
 				}
 				else if(AlarmState == FALSE)
 				{
 					AlarmState = TRUE ;
 					xEventGroupSetBits(egEvents,SystemFireState);
-					if( xSemaphoreTake( xMutexLCD, ( TickType_t ) 400 ) == pdTRUE )
+					if( xSemaphoreTake( xMutexLCD, ( TickType_t ) 10 ) == pdTRUE )
 					{
 						LCD_DisplayStringRowCol((uint8 *)"E",2,13);	
+						USART_SendStringPolling((uint8 *)"enable Fire System\r");
 						xSemaphoreGive( xMutexLCD );
 					}
 					else 
 					{
-
+						USART_SendStringPolling((uint8 *)"Failed to toggle Fire System state\r");
 					}
 				}
 
 			}
 		}
-		
+		// vTaskDelay(300);
 
 	}
 }
 
-
+/*	
+* worst case execution time = 700ms	
+* Period : 500 ms
+*/
 void T_T6_SwitchBetHaz_Nor(void *pvparam)
 {
 	boolean Mutex_Taken_Already = FALSE ;
@@ -325,14 +359,15 @@ void T_T6_SwitchBetHaz_Nor(void *pvparam)
 										(SystemFireState | ExceedTemperature),
 										0,
 										1,//AND
-										100);
+										( TickType_t )500);
 
 		if( ( ebValues & (SystemFireState | ExceedTemperature) )== (SystemFireState | ExceedTemperature) )
 		{
-			if( xSemaphoreTake( xMutexLCD, ( TickType_t ) 1000 ) == pdTRUE )
+			if( xSemaphoreTake( xMutexLCD, ( TickType_t ) 10 ) == pdTRUE )
 			{
 				Mutex_Taken_Already = TRUE ;
 				LED_OnOffPositiveLogic(PORTC_ID,PIN0_ID,LED_ON);
+				USART_SendStringPolling((uint8 *)"Fire !!!!!!!!!!!!!!!\r");
 				F_fireStateScreen();
 			}
 			
@@ -343,13 +378,16 @@ void T_T6_SwitchBetHaz_Nor(void *pvparam)
 			{
 				Mutex_Taken_Already = FALSE ;
 				LED_OnOffPositiveLogic(PORTC_ID,PIN0_ID,LED_OFF);
-				xSemaphoreGive( xMutexLCD );
 				/*	Should be here to avoid continous update LCD without go from Fire state to normal state*/
 				LCD_MAINInit();	
+				USART_SendStringPolling((uint8 *)"No Fire\r");
+
+				xSemaphoreGive( xMutexLCD );
 			}
 		
 		}
-		vTaskDelay(100);
+		// vTaskDelay(500);
+		
 	}
 	
 }

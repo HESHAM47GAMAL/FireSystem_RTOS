@@ -5,6 +5,12 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{E66E83B9-2572-4076-B26E-6BE79FF3018A}") = "CatchTemperature_EXE_time", "CatchTemperature_EXE_time\CatchTemperature_EXE_time.cppproj", "{DCE6C7E3-EE26-4D79-826B-08594B9AD897}"
 EndProject
+Project("{E66E83B9-2572-4076-B26E-6BE79FF3018A}") = "CatchUART_Listen_EXE_time", "CatchUART_Listen_EXE_time\CatchUART_Listen_EXE_time.cppproj", "{5C1DE0EF-51B4-410A-8400-E361235B3C2B}"
+EndProject
+Project("{E66E83B9-2572-4076-B26E-6BE79FF3018A}") = "CatchLCDUpdate_EXE_time", "CatchLCDUpdate_EXE_time\CatchLCDUpdate_EXE_time.cppproj", "{51951886-2854-4496-9C43-334D4C619AF6}"
+EndProject
+Project("{E66E83B9-2572-4076-B26E-6BE79FF3018A}") = "CatchSwitchHazardNormal_EXE_time", "CatchSwitchHazardNormal_EXE_time\CatchSwitchHazardNormal_EXE_time.cppproj", "{31A64DFD-FFAF-4CB5-9BD6-D529832EDC40}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|AVR = Debug|AVR
@@ -15,6 +21,18 @@ Global
 		{DCE6C7E3-EE26-4D79-826B-08594B9AD897}.Debug|AVR.Build.0 = Debug|AVR
 		{DCE6C7E3-EE26-4D79-826B-08594B9AD897}.Release|AVR.ActiveCfg = Release|AVR
 		{DCE6C7E3-EE26-4D79-826B-08594B9AD897}.Release|AVR.Build.0 = Release|AVR
+		{5C1DE0EF-51B4-410A-8400-E361235B3C2B}.Debug|AVR.ActiveCfg = Debug|AVR
+		{5C1DE0EF-51B4-410A-8400-E361235B3C2B}.Debug|AVR.Build.0 = Debug|AVR
+		{5C1DE0EF-51B4-410A-8400-E361235B3C2B}.Release|AVR.ActiveCfg = Release|AVR
+		{5C1DE0EF-51B4-410A-8400-E361235B3C2B}.Release|AVR.Build.0 = Release|AVR
+		{51951886-2854-4496-9C43-334D4C619AF6}.Debug|AVR.ActiveCfg = Debug|AVR
+		{51951886-2854-4496-9C43-334D4C619AF6}.Debug|AVR.Build.0 = Debug|AVR
+		{51951886-2854-4496-9C43-334D4C619AF6}.Release|AVR.ActiveCfg = Release|AVR
+		{51951886-2854-4496-9C43-334D4C619AF6}.Release|AVR.Build.0 = Release|AVR
+		{31A64DFD-FFAF-4CB5-9BD6-D529832EDC40}.Debug|AVR.ActiveCfg = Debug|AVR
+		{31A64DFD-FFAF-4CB5-9BD6-D529832EDC40}.Debug|AVR.Build.0 = Debug|AVR
+		{31A64DFD-FFAF-4CB5-9BD6-D529832EDC40}.Release|AVR.ActiveCfg = Release|AVR
+		{31A64DFD-FFAF-4CB5-9BD6-D529832EDC40}.Release|AVR.Build.0 = Release|AVR
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
