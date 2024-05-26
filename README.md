@@ -5,6 +5,7 @@
 - [Block-Diagram](#Block-Diagram)
 - [State_machine](#State_machine)
 - [TasksScheduling](#TasksScheduling)
+- [OSservices](#OSservices)
 - [Tools](#Tools)
 - [Demo](#Demo)
 - [Yotube](#Yotube)
@@ -32,6 +33,11 @@
 <img src= "https://github.com/HESHAM47GAMAL/FireSystem_RTOS/blob/main/Tasks_Scheduling.png">
 
 <p>There are folder called GetingExecutionTime this is work space to for each task to get worst execution time for each task to be used in Simso</p>
+
+## OSservices
+<p>1.mutex </p>
+<p>2.Queue </p>
+<p>3.EventGroup </p>
 
 ## Tools
 <p>1.Eclipse </p>
